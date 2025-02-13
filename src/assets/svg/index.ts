@@ -1,0 +1,6 @@
+export { default as DashboardSvg } from './DashboardSvg'
+export { default as CampaignSvg } from './CampaignSvg'
+export { default as CustomerSvg } from './CustomerSvg'
+export { default as ReportSvg } from './ReportSvg'
+export { default as UploadSvg } from './UploadSvg'
+export { default as CouponSvg } from './CouponSvg'

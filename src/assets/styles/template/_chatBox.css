@@ -1,0 +1,41 @@
+.chatBox {
+    position: relative;
+}
+  
+.chatBox::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid;
+
+}
+.chatBox_customer::before{
+    left: -8px;
+    border-top-color: #e5e7eb;
+    transform: rotate(180deg);
+}
+.chatBox_admin::before{
+    right: -8px; 
+    border-top-color:  #dbeafe; 
+    transform: rotate(180deg);
+}
+.scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+.scrollbar-thumb-gray-600::-webkit-scrollbar-thumb {
+    background-color: #4B5563;
+    border-radius: 9999px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+ 
+  
+ 
