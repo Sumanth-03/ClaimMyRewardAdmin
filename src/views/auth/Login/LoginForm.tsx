@@ -18,14 +18,13 @@ interface LoginFormProps extends CommonProps {
 }
 
 type LoginFormSchema = {
-    email: string
+    user: string
     password: string
 }
 
 const validationSchema = Yup.object().shape({
-    email: Yup.string()
-        .email('Please enter a valid email')
-        .required('Please enter your email'),
+    user: Yup.string()
+        .required('Please enter user name'),
     password: Yup.string().required('Please enter your password')
 })
 
@@ -45,11 +44,11 @@ const LoginForm = (props: LoginFormProps) => {
         values: LoginFormSchema,
         setSubmitting: (isSubmitting: boolean) => void
     ) => {
-        const { email, password } = values
+        const { user, password } = values
         setSubmitting(true)
 
-        const result = await signIn({ email, password })
-
+        const result = await signIn({ user:user, pass:password })
+        console.log(result)
         if (result?.status === 'failed') {
             setMessage(result.message)
         }
@@ -66,7 +65,7 @@ const LoginForm = (props: LoginFormProps) => {
             )}
             <Formik
                 initialValues={{
-                    email: '',
+                    user: '',
                     password: ''
                 }}
                 validationSchema={validationSchema}
@@ -82,16 +81,16 @@ const LoginForm = (props: LoginFormProps) => {
                     <Form>
                         <FormContainer>
                             <FormItem
-                                label="Email"
+                                label="User Name"
                                 invalid={
-                                    (errors.email && touched.email) as boolean
+                                    (errors.user && touched.user) as boolean
                                 }
-                                errorMessage={errors.email}
+                                errorMessage={errors.user}
                             >
                                 <Field
                                     type="text"
                                     autoComplete="off"
-                                    name="email"
+                                    name="user"
                                     placeholder="john@gmail.com"
                                     component={Input}
                                 />

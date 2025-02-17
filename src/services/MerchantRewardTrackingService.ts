@@ -19,3 +19,13 @@ export async function apiMerchantResolveTicket<T, U extends Record<string, unkno
         data,
     })
 }
+
+export async function apiGetRewardTrackingDetailsKeyword<T, U extends Record<string, unknown>>(
+    params: U,
+) {
+    return ApiService.fetchData<T>({
+        url: '/getDashMissingPointsKeyword',
+        method: 'get',
+        params,
+    })
+}

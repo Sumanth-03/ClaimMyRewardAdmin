@@ -10,7 +10,7 @@ export type TableQueries = {
     total?: number
     page?: number
     limit?: number
-    keyword?: string
+    key?: string
     sortBy?: string
     populate?: string
 }

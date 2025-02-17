@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import {
-    apiGetRewardTrackingDetails
+    apiGetRewardTrackingDetails,
+    apiGetRewardTrackingDetailsKeyword
 } from '@/services/MerchantRewardTrackingService'
 import type { TableQueries } from '@/@types/common'
 import type { MerchantRewardTrackingData } from '@/@types/MerchantRewardTracking'
@@ -43,13 +44,22 @@ export const getMerchantRewardtDetails = createAsyncThunk(
     },
 )
 
-
+export const getMerchantRewardtDetailsKeyword = createAsyncThunk(
+    SLICE_NAME + '/getMerchantRewardtDetailsKeyword',
+    async (params: GetMerchantRewardRequest) => {
+        const response = await apiGetRewardTrackingDetailsKeyword<
+            GetMerchantRewardResponse,
+            GetMerchantRewardRequest
+        >(params)
+        return response.data
+    },
+)
 
 export const initialTableData: TableQueries = {
     total: 0,
     page: 1,
     limit: 10,
-    keyword: '',
+    key: '',
     sortBy: 'createdAt:desc',
 }
 
@@ -86,7 +96,19 @@ const merchantSlice = createSlice({
         .addCase(getMerchantRewardtDetails.rejected, (state, action) => {
             console.error("API Request Failed:", action.error.message);
             state.loading = false;
+        })
+        .addCase(getMerchantRewardtDetailsKeyword.fulfilled, (state, action) => {
+            state.TrackingList = action.payload.data || [];
+            state.loading = false;
+        })
+        .addCase(getMerchantRewardtDetailsKeyword.pending, (state) => {
+            state.loading = true;
+        })
+        .addCase(getMerchantRewardtDetailsKeyword.rejected, (state, action) => {
+            console.error("API Request Failed:", action.error.message);
+            state.loading = false;
         });
+
     },
 })
 

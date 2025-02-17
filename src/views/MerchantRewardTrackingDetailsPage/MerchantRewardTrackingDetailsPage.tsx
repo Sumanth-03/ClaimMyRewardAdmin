@@ -32,6 +32,7 @@ import {
 
 import {
   postMessage,
+  ChatMessage
 } from '../CampaignRewardTrackingDetailsPage/store/campaignDetailSlice'
 
 import { MerchantRewardTrackingData } from '@/@types/MerchantRewardTracking'
@@ -47,7 +48,7 @@ const CampaignRewardTrackingDetailsPage = () => {
     const tableData = useAppSelectorTable((state)=>state.merchantRewardTracking.data.TrackingList)
     const chatDetails = useAppSelector((state)=>state.merchantRewardTrackingDetails.data.message)
     const chatBoxRef = useRef<HTMLDivElement | null>(null);
-    const [alteredChat, setAlteredChat] = useState([])
+    const [alteredChat, setAlteredChat] = useState<ChatMessage[]>([])
 
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
@@ -64,7 +65,7 @@ const CampaignRewardTrackingDetailsPage = () => {
       const handlePostMessage = async (message:String, Id?:String) => {
         if(message.trim() == '') return
         try {
-          dispatch(postMessage({"ticket_id": Number(Id), "msg":message, "type": 1}))
+          await dispatch(postMessage({"ticket_id": Number(Id), "msg":message, "type": 1}))
         } catch (error) {
           console.error("Error fetching chat:", error);
         } finally{
@@ -126,7 +127,7 @@ const CampaignRewardTrackingDetailsPage = () => {
     useEffect(() => {
       if (!requestDetails) return;
       const chat = generateMessage(requestDetails);
-      const alteredChat = [chat,...chatDetails];
+      const alteredChat = [chat,...(chatDetails || [])];
       setAlteredChat(alteredChat)
     }, [chatDetails]);
   

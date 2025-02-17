@@ -87,9 +87,6 @@ const CampaignRewardTrackingTable = () => {
             getCampaignRewardtDetails({
                 page,
                 count : limit,
-                // sortBy,
-                // keyword,
-                // ...filterData,
             }),
         )
     }
@@ -206,7 +203,7 @@ const CampaignRewardTrackingTable = () => {
     // }
     // useEffect(()=>{
     //     toast.push(
-    //         <Notification title='123'> 123 fghj </Notification>
+    //         <Notification title='test'>test</Notification>
     //     )
     // },[])
 

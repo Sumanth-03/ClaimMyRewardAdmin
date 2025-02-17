@@ -34,19 +34,23 @@ function useAuth() {
     > => {
         try {
             const resp = await apiSignIn(values)
-            if (resp.data) {
+            if (resp.data.data) {
+                console.log(resp)
                 const {
-                    tokens: { access },
-                    user
-                } = resp.data
-                dispatch(signInSuccess(access?.token))
-                if (user) {
-                    dispatch(setUser(user))
-                }
+                    token,
+                    
+                } = resp?.data?.data
+                dispatch(signInSuccess(token))
                 const redirectUrl = query.get(REDIRECT_URL_KEY)
                 navigate(
                     redirectUrl ? redirectUrl : appConfig.authenticatedEntryPath
                 )
+                if(resp?.data?.status==400){
+                    return {
+                        status: 'failed',
+                        message: resp?.data?.message
+                    }
+                }
                 return {
                     status: 'success',
                     message: ''

@@ -63,11 +63,11 @@ const MerchantRewardTrackingTable = () => {
         (state) => state.merchantRewardTracking.data.filterData,
     )
 
-    const keyword = useAppSelector(
-        (state) => state.merchantRewardTracking.data.tableData.keyword
-    )
+    type PriorityLevels = {
+      [key: number]: { label: string; bgColor: string };
+    };
 
-    const priorityConfig = {
+    const priorityConfig: PriorityLevels = {
       1: { label: "Critical Issue", bgColor: "bg-red-600" },
       2: { label: "High Priority", bgColor: "bg-orange-500" },
       3: { label: "Moderate Priority", bgColor: "bg-yellow-400" },
@@ -89,9 +89,6 @@ const MerchantRewardTrackingTable = () => {
           getMerchantRewardtDetails({
                 page,
                 count : limit,
-                // sortBy,
-                // keyword,
-                // ...filterData,
             }),
         )
     }

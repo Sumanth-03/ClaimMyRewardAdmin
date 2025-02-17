@@ -19,6 +19,7 @@ import {
   postCampaignResolveRequest,
   getMessageDetails,
   GetChatMessageResponse,
+  ChatMessage
 } from './store'
 import {
   useAppSelector as useAppSelectorTable, 
@@ -38,7 +39,7 @@ const CampaignRewardTrackingDetailsPage = () => {
     const [requestDetails,setrequestDetails] = useState<CampaignRewardTrackingData>()
     const tableData = useAppSelectorTable((state)=>state.rewardTracking.data.TrackingList)
     const chatDetails = useAppSelector((state)=>state.TrackingDetails.data.message)
-    const [alteredChat, setAlteredChat] = useState([])
+    const [alteredChat, setAlteredChat] = useState<ChatMessage[]>([])
     const chatBoxRef = useRef<HTMLDivElement | null>(null);
     
     const dispatch = useAppDispatch()
@@ -123,7 +124,7 @@ const CampaignRewardTrackingDetailsPage = () => {
   useEffect(() => {
     if (!requestDetails) return;
     const chat = generateMessage(requestDetails);
-    const alteredChat = [...chat,...chatDetails];
+    const alteredChat = [...chat,...(chatDetails || [])];
     setAlteredChat(alteredChat)
   }, [chatDetails]);
 

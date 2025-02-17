@@ -4,6 +4,8 @@ import { HiOutlineSearch } from 'react-icons/hi'
 import {
     useAppSelector,
     useAppDispatch,
+    setTableData,
+    getCampaignRewardtDetails,
 } from '../store'
 import debounce from 'lodash/debounce'
 import cloneDeep from 'lodash/cloneDeep'
@@ -22,21 +24,21 @@ const CampaignTableSearch = () => {
     const debounceFn = debounce(handleDebounceFn, 500)
 
     function handleDebounceFn(val: string) {
-        const newTableData = cloneDeep(tableData)
-        newTableData.keyword = val
-        newTableData.page = 1
+        // const newTableData = cloneDeep(tableData)
+        // newTableData.key = val
+        // newTableData.page = 1
         if (typeof val === 'string' && val.length >= 1) {
-            fetchData(newTableData)
+            fetchData({key:val})
         }
 
         if (typeof val === 'string' && val.length === 0) {
-            fetchData(newTableData)
+            fetchData({key:val})
         }
     }
 
     const fetchData = (data: TableQueries) => {
-        // dispatch(setTableData(data))
-        // dispatch(getCampaigns({...data, ...filterData}))
+        dispatch(setTableData({...data, page: 1, limit: 10,}))
+        dispatch(getCampaignRewardtDetails({...data, ...filterData}))
     }
 
     const onEdit = (e: ChangeEvent<HTMLInputElement>) => {

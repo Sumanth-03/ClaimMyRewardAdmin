@@ -28,14 +28,14 @@ BaseService.interceptors.request.use(
         }
 
         if (accessToken) {
-            // config.headers[
-            //     REQUEST_HEADER_AUTH_KEY
-            // ] = `${TOKEN_TYPE}${accessToken}`
-            
-            //hardcoaded token
             config.headers[
                 REQUEST_HEADER_AUTH_KEY
-            ] = `${TOKEN_TYPE}${'22fc9d7c-d3ca-4efe-b38e-fd7cc6013b29'}`
+            ] = `${TOKEN_TYPE}${accessToken}`
+            
+            //hardcoaded token
+            // config.headers[
+            //     REQUEST_HEADER_AUTH_KEY
+            // ] = `${TOKEN_TYPE}${'22fc9d7c-d3ca-4efe-b38e-fd7cc6013b29'}`
         }
 
         return config

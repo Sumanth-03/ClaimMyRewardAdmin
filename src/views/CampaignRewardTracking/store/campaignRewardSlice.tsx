@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import {
-    apiGetRewardTrackingDetails
+    apiGetRewardTrackingDetails,
+    apiGetRewardTrackingDetailsKeyword
 } from '@/services/CampaignRewardTrackingService'
 import type { TableQueries } from '@/@types/common'
 import type { CampaignRewardTrackingData } from '@/@types/CampaignRewardTracking'
@@ -36,11 +37,22 @@ export const getCampaignRewardtDetails = createAsyncThunk(
     },
 )
 
+export const getCampaignRewardtDetailsKeyword = createAsyncThunk(
+    SLICE_NAME + '/keyword',
+    async (params: GetCampaignRewardRequest) => {
+        const response = await apiGetRewardTrackingDetailsKeyword<
+            GetCampaignRewardResponse,
+            GetCampaignRewardRequest
+        >(params)
+        return response.data
+    },
+)
+
 
 export const initialTableData: TableQueries = {
     page: 1,
     limit: 10,
-    keyword: '',
+    key: '',
 }
 
 const initialState: RewardTrackingState = {
@@ -67,15 +79,25 @@ const campaignSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getCampaignRewardtDetails.fulfilled, (state, action) => {
-                        state.TrackingList = action.payload.data || [];
-                        state.loading = false;
-                    })
-                    .addCase(getCampaignRewardtDetails.pending, (state) => {
-                        state.loading = true;
-                    })
-                    .addCase(getCampaignRewardtDetails.rejected, (state, action) => {
-                        state.loading = false;
-                    });
+                state.TrackingList = action.payload.data || [];
+                state.loading = false;
+            })
+            .addCase(getCampaignRewardtDetails.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(getCampaignRewardtDetails.rejected, (state, action) => {
+                state.loading = false;
+            })
+            .addCase(getCampaignRewardtDetailsKeyword.fulfilled, (state, action) => {
+                state.TrackingList = action.payload.data || [];
+                state.loading = false;
+            })
+            .addCase(getCampaignRewardtDetailsKeyword.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(getCampaignRewardtDetailsKeyword.rejected, (state, action) => {
+                state.loading = false;
+            });
     },
 })
 

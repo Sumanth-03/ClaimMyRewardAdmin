@@ -29,19 +29,9 @@ const statusOptions: Option[] = [
 ]
 
 const typeOptions: Option[] = [
-    { label: 'Milestone', value: 'milestone' },
-    { label: 'Referral', value: 'referral' },
-    { label: 'Scratch Card', value: 'scratchcard' },
-    { label: 'Spin', value: 'spin' },
-    { label: 'Quiz', value: 'quiz' },
+    { label: 'null', value: 'null' }
 ]
 
-const rewardTypeOptions: Option[] = [
-    { label: 'Points', value: 'points' },
-    { label: 'Coupons', value: 'coupons' },
-    { label: 'Gift Card', value: 'giftCard' },
-    { label: 'Spin', value: 'spin' },
-]
 
 type FormModel = {
     status?: string
@@ -94,24 +84,24 @@ const FilterForm = forwardRef<FormikProps<FormModel>, FilterFormProps>(
                     <Form>
                         <FormContainer>
                             <FormItem
-                                label="Campaign Type"
+                                label="filter"
                                 invalid={
-                                    (errors.type && touched.type) as boolean
+                                    (errors && touched) as boolean
                                 }
-                                errorMessage={errors.type}
+                                errorMessage={''}
                             >
                                 <Field name="type">
                                     {({ field, form }: FieldProps) => (
                                         <Select
                                             isSearchable={false}
-                                            placeholder="Select Campaign Type"
+                                            placeholder="Select"
                                             field={field}
                                             form={form}
                                             options={typeOptions}
                                             value={typeOptions?.filter(
                                                 (option) =>
                                                     option.value ===
-                                                    values.type,
+                                                    values,
                                             )}
                                             onChange={(option) => {
                                                 form.setFieldValue(
@@ -119,63 +109,6 @@ const FilterForm = forwardRef<FormikProps<FormModel>, FilterFormProps>(
                                                     option?.value,
                                                 )
                                             }}
-                                        />
-                                    )}
-                                </Field>
-                            </FormItem>
-                            <FormItem
-                                label="Reward Type"
-                                invalid={
-                                    (errors.rewardType &&
-                                        touched.rewardType) as boolean
-                                }
-                                errorMessage={errors.rewardType}
-                            >
-                                <Field name="rewardType">
-                                    {({ field, form }: FieldProps) => (
-                                        <Select
-                                            isSearchable={false}
-                                            placeholder="Select Reward Type"
-                                            field={field}
-                                            form={form}
-                                            options={rewardTypeOptions}
-                                            value={rewardTypeOptions?.filter(
-                                                (option) =>
-                                                    option.value ===
-                                                    values.rewardType,
-                                            )}
-                                            onChange={(option) => {
-                                                form.setFieldValue(
-                                                    field.name,
-                                                    option?.value,
-                                                )
-                                            }}
-                                        />
-                                    )}
-                                </Field>
-                            </FormItem>
-                            <FormItem label="Status">
-                                <Field name="status">
-                                    {({
-                                        field,
-                                        form,
-                                    }: FieldProps<FormModel>) => (
-                                        <Select
-                                            placeholder="Select Status"
-                                            field={field}
-                                            form={form}
-                                            options={statusOptions}
-                                            value={statusOptions.filter(
-                                                (option) =>
-                                                    option.value ===
-                                                    values.status,
-                                            )}
-                                            onChange={(option) =>
-                                                form.setFieldValue(
-                                                    field.name,
-                                                    option?.value,
-                                                )
-                                            }
                                         />
                                     )}
                                 </Field>
