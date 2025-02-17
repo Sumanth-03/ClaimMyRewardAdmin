@@ -6,8 +6,8 @@ const authRoute: Routes = [
         key: 'login',
         path: `/login`,
         component: lazy(() => import('@/views/auth/Login')),
-        authority: []
-    }
+        authority: [],
+    },
 ]
 
 export default authRoute

@@ -23,9 +23,8 @@ type LoginFormSchema = {
 }
 
 const validationSchema = Yup.object().shape({
-    user: Yup.string()
-        .required('Please enter user name'),
-    password: Yup.string().required('Please enter your password')
+    user: Yup.string().required('Please enter user name'),
+    password: Yup.string().required('Please enter your password'),
 })
 
 const LoginForm = (props: LoginFormProps) => {
@@ -33,7 +32,7 @@ const LoginForm = (props: LoginFormProps) => {
         disableSubmit = false,
         className,
         forgotPasswordUrl = '/forgot-password',
-        signUpUrl = '/sign-up'
+        signUpUrl = '/sign-up',
     } = props
 
     const [message, setMessage] = useTimeOutMessage()
@@ -42,12 +41,12 @@ const LoginForm = (props: LoginFormProps) => {
 
     const onSignIn = async (
         values: LoginFormSchema,
-        setSubmitting: (isSubmitting: boolean) => void
+        setSubmitting: (isSubmitting: boolean) => void,
     ) => {
         const { user, password } = values
         setSubmitting(true)
 
-        const result = await signIn({ user:user, pass:password })
+        const result = await signIn({ user: user, pass: password })
         console.log(result)
         if (result?.status === 'failed') {
             setMessage(result.message)
@@ -66,7 +65,7 @@ const LoginForm = (props: LoginFormProps) => {
             <Formik
                 initialValues={{
                     user: '',
-                    password: ''
+                    password: '',
                 }}
                 validationSchema={validationSchema}
                 onSubmit={(values, { setSubmitting }) => {

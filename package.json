@@ -9,6 +9,7 @@
     "build-dev": "vite build --mode development",
     "build-prod": "vite build --mode production",
     "build-stage": "vite build --mode staging",
+    "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "npm run lint -- --fix",

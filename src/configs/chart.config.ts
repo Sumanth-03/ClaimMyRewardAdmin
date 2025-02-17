@@ -4,24 +4,24 @@ import type { ApexOptions } from 'apexcharts'
 export const apexLineChartDefaultOption: ApexOptions = {
     chart: {
         zoom: {
-            enabled: false
+            enabled: false,
         },
         toolbar: {
-            show: false
-        }
+            show: false,
+        },
     },
     colors: [...COLORS],
     dataLabels: {
-        enabled: false
+        enabled: false,
     },
     stroke: {
         width: 2.5,
         curve: 'smooth',
-        lineCap: 'round'
+        lineCap: 'round',
     },
     legend: {
         itemMargin: {
-            vertical: 10
+            vertical: 10,
         },
         tooltipHoverFormatter: function (val, opts) {
             return (
@@ -30,11 +30,11 @@ export const apexLineChartDefaultOption: ApexOptions = {
                 opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] +
                 ''
             )
-        }
+        },
     },
     xaxis: {
-        categories: []
-    }
+        categories: [],
+    },
 }
 
 export const apexAreaChartDefaultOption = { ...apexLineChartDefaultOption }
@@ -42,32 +42,32 @@ export const apexAreaChartDefaultOption = { ...apexLineChartDefaultOption }
 export const apexBarChartDefaultOption: ApexOptions = {
     chart: {
         zoom: {
-            enabled: false
+            enabled: false,
         },
         toolbar: {
-            show: false
-        }
+            show: false,
+        },
     },
     plotOptions: {
         bar: {
             horizontal: false,
             columnWidth: '30px',
-            borderRadius: 2
-        }
+            borderRadius: 2,
+        },
     },
     colors: [...COLORS],
     dataLabels: {
-        enabled: false
+        enabled: false,
     },
     stroke: {
         show: true,
         width: 6,
         curve: 'smooth',
-        colors: ['transparent']
+        colors: ['transparent'],
     },
     legend: {
         itemMargin: {
-            vertical: 10
+            vertical: 10,
         },
         tooltipHoverFormatter: function (val, opts) {
             return (
@@ -76,19 +76,19 @@ export const apexBarChartDefaultOption: ApexOptions = {
                 opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] +
                 ''
             )
-        }
+        },
     },
     xaxis: {
-        categories: []
+        categories: [],
     },
     fill: {
-        opacity: 1
+        opacity: 1,
     },
     tooltip: {
         y: {
-            formatter: (val) => `${val}`
-        }
-    }
+            formatter: (val) => `${val}`,
+        },
+    },
 }
 
 export const apexDonutChartDefaultOption: ApexOptions = {
@@ -107,25 +107,25 @@ export const apexDonutChartDefaultOption: ApexOptions = {
                                 (a: string, b: string) => {
                                     return a + b
                                 },
-                                0
+                                0,
                             )
-                        }
-                    }
+                        },
+                    },
                 },
-                size: '85%'
-            }
-        }
+                size: '85%',
+            },
+        },
     },
     stroke: {
-        colors: ['transparent']
+        colors: ['transparent'],
     },
     labels: [],
     dataLabels: {
-        enabled: false
+        enabled: false,
     },
     legend: {
-        show: false
-    }
+        show: false,
+    },
 }
 
 export const apexPieChartDefaultOption: ApexOptions = {
@@ -144,54 +144,54 @@ export const apexPieChartDefaultOption: ApexOptions = {
                                 (a: string, b: string) => {
                                     return a + b
                                 },
-                                0
+                                0,
                             )
-                        }
-                    }
+                        },
+                    },
                 },
-                size: '85%'
-            }
-        }
+                size: '85%',
+            },
+        },
     },
     stroke: {
-        colors: ['transparent']
+        colors: ['transparent'],
     },
     labels: [],
     dataLabels: {
-        enabled: false
+        enabled: false,
     },
     legend: {
-        show: false
-    }
+        show: false,
+    },
 }
 
 export const apexSparklineChartDefultOption: ApexOptions = {
     chart: {
         type: 'line',
         sparkline: {
-            enabled: true
-        }
+            enabled: true,
+        },
     },
     stroke: {
         width: 2,
-        curve: 'smooth'
+        curve: 'smooth',
     },
     tooltip: {
         fixed: {
-            enabled: false
+            enabled: false,
         },
         x: {
-            show: false
+            show: false,
         },
         y: {
             title: {
                 formatter: function () {
                     return ''
-                }
-            }
+                },
+            },
         },
         marker: {
-            show: false
-        }
-    }
+            show: false,
+        },
+    },
 }

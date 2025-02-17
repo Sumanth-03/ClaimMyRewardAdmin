@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import {
     apiGetRewardTrackingDetails,
-    apiGetRewardTrackingDetailsKeyword
+    apiGetRewardTrackingDetailsKeyword,
 } from '@/services/CampaignRewardTrackingService'
 import type { TableQueries } from '@/@types/common'
 import type { CampaignRewardTrackingData } from '@/@types/CampaignRewardTracking'
 
 type GetCampaignRewardResponse = {
-    data:  CampaignRewardTrackingData[]
+    data: CampaignRewardTrackingData[]
 }
 
 type FilterQueries = {
@@ -48,7 +48,6 @@ export const getCampaignRewardtDetailsKeyword = createAsyncThunk(
     },
 )
 
-
 export const initialTableData: TableQueries = {
     page: 1,
     limit: 10,
@@ -58,7 +57,7 @@ export const initialTableData: TableQueries = {
 const initialState: RewardTrackingState = {
     loading: false,
     refresh: 0,
-    TrackingList:[],
+    TrackingList: [],
     tableData: initialTableData,
     filterData: {
         //initial filterData
@@ -79,32 +78,38 @@ const campaignSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getCampaignRewardtDetails.fulfilled, (state, action) => {
-                state.TrackingList = action.payload.data || [];
-                state.loading = false;
+                state.TrackingList = action.payload.data || []
+                state.loading = false
             })
             .addCase(getCampaignRewardtDetails.pending, (state) => {
-                state.loading = true;
+                state.loading = true
             })
             .addCase(getCampaignRewardtDetails.rejected, (state, action) => {
-                state.loading = false;
+                state.loading = false
             })
-            .addCase(getCampaignRewardtDetailsKeyword.fulfilled, (state, action) => {
-                state.TrackingList = action.payload.data || [];
-                state.loading = false;
-            })
+            .addCase(
+                getCampaignRewardtDetailsKeyword.fulfilled,
+                (state, action) => {
+                    state.TrackingList = action.payload.data || []
+                    state.loading = false
+                },
+            )
             .addCase(getCampaignRewardtDetailsKeyword.pending, (state) => {
-                state.loading = true;
+                state.loading = true
             })
-            .addCase(getCampaignRewardtDetailsKeyword.rejected, (state, action) => {
-                state.loading = false;
-            });
+            .addCase(
+                getCampaignRewardtDetailsKeyword.rejected,
+                (state, action) => {
+                    state.loading = false
+                },
+            )
     },
 })
 
 export const {
     setTableData,
-    setRefresh
-   //reducer func's
+    setRefresh,
+    //reducer func's
 } = campaignSlice.actions
 
 export default campaignSlice.reducer

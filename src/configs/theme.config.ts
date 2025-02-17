@@ -5,7 +5,7 @@ import {
     ColorLevel,
     NavMode,
     ControlSize,
-    LayoutType
+    LayoutType,
 } from '@/@types/theme'
 
 export type ThemeConfig = {
@@ -38,6 +38,6 @@ export const themeConfig: ThemeConfig = {
     navMode: THEME_ENUM.NAV_MODE_THEMED,
     layout: {
         type: THEME_ENUM.LAYOUT_TYPE_CLASSIC,
-        sideNavCollapse: true
-    }
+        sideNavCollapse: true,
+    },
 }

@@ -6,8 +6,7 @@ import {
     CouponSvg,
 } from '../assets/svg'
 import { HiOutlineCog } from 'react-icons/hi'
-import { MdOutlineLocalOffer } from "react-icons/md";
-
+import { MdOutlineLocalOffer } from 'react-icons/md'
 
 export type NavigationIcons = Record<string, JSX.Element>
 

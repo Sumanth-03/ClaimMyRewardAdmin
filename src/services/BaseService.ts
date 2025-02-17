@@ -28,10 +28,9 @@ BaseService.interceptors.request.use(
         }
 
         if (accessToken) {
-            config.headers[
-                REQUEST_HEADER_AUTH_KEY
-            ] = `${TOKEN_TYPE}${accessToken}`
-            
+            config.headers[REQUEST_HEADER_AUTH_KEY] =
+                `${TOKEN_TYPE}${accessToken}`
+
             //hardcoaded token
             // config.headers[
             //     REQUEST_HEADER_AUTH_KEY
@@ -42,7 +41,7 @@ BaseService.interceptors.request.use(
     },
     (error) => {
         return Promise.reject(error)
-    }
+    },
 )
 
 BaseService.interceptors.response.use(
@@ -55,7 +54,7 @@ BaseService.interceptors.response.use(
         }
 
         return Promise.reject(error)
-    }
+    },
 )
 
 export default BaseService

@@ -5,7 +5,7 @@ import {
     apexBarChartDefaultOption,
     apexAreaChartDefaultOption,
     apexDonutChartDefaultOption,
-    apexPieChartDefaultOption
+    apexPieChartDefaultOption,
 } from '@/configs/chart.config'
 import { DIR_RTL } from '@/constants/theme.constant'
 import type { ApexOptions } from 'apexcharts'
@@ -70,7 +70,7 @@ const Chart = (props: ChartProps) => {
     const setLegendOffset = useCallback(() => {
         if (chartRef.current) {
             const lengend = chartRef.current.querySelectorAll<HTMLDivElement>(
-                'div.apexcharts-legend'
+                'div.apexcharts-legend',
             )[0]
             if (direction === DIR_RTL) {
                 lengend.style.right = 'auto'

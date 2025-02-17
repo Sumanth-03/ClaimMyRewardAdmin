@@ -17,9 +17,13 @@ const CampaignTableSearch = () => {
 
     const searchInput = useRef(null)
 
-    const tableData = useAppSelector((state) => state.rewardTracking.data.tableData)
+    const tableData = useAppSelector(
+        (state) => state.rewardTracking.data.tableData,
+    )
 
-    const filterData = useAppSelector((state) => state.rewardTracking.data.filterData)
+    const filterData = useAppSelector(
+        (state) => state.rewardTracking.data.filterData,
+    )
 
     const debounceFn = debounce(handleDebounceFn, 500)
 
@@ -28,17 +32,17 @@ const CampaignTableSearch = () => {
         // newTableData.key = val
         // newTableData.page = 1
         if (typeof val === 'string' && val.length >= 1) {
-            fetchData({key:val})
+            fetchData({ key: val })
         }
 
         if (typeof val === 'string' && val.length === 0) {
-            fetchData({key:val})
+            fetchData({ key: val })
         }
     }
 
     const fetchData = (data: TableQueries) => {
-        dispatch(setTableData({...data, page: 1, limit: 10,}))
-        dispatch(getCampaignRewardtDetails({...data, ...filterData}))
+        dispatch(setTableData({ ...data, page: 1, limit: 10 }))
+        dispatch(getCampaignRewardtDetails({ ...data, ...filterData }))
     }
 
     const onEdit = (e: ChangeEvent<HTMLInputElement>) => {

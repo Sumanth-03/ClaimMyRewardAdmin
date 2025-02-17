@@ -33,7 +33,7 @@ const Side = ({ children, content, ...rest }: SideProps) => {
                         </div>
                     </div>
                     <p className="text-lg text-white opacity-80">
-                    Cheggout comes with a complete set of UI components
+                        Cheggout comes with a complete set of UI components
                         crafted with Tailwind CSS, it fulfilled most of the use
                         case to create modern and beautiful UI and application
                     </p>

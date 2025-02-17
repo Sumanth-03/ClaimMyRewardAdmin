@@ -4,7 +4,7 @@ import Switcher from '@/components/ui/Switcher'
 import toast from '@/components/ui/toast'
 import Notification from '@/components/ui/Notification'
 import type { CampaignRewardTrackingData } from '@/@types/CampaignRewardTracking'
-import { HiOutlineEye } from "react-icons/hi";
+import { HiOutlineEye } from 'react-icons/hi'
 import {
     getCampaignRewardtDetails,
     setTableData,
@@ -37,13 +37,15 @@ const ActionColumn = ({ row }: { row: CampaignRewardTrackingData }) => {
                 onClick={onView}
             >
                 <HiOutlineEye size={20} />
-            </span> 
+            </span>
         </div>
     )
 }
 
 const CampaignRewardTrackingTable = () => {
-    const [sortedData, setSortedData] = useState<CampaignRewardTrackingData[]>([]);
+    const [sortedData, setSortedData] = useState<CampaignRewardTrackingData[]>(
+        [],
+    )
 
     const tableRef = useRef<DataTableResetHandle>(null)
 
@@ -57,36 +59,33 @@ const CampaignRewardTrackingTable = () => {
 
     const refresh = useAppSelector((state) => state.rewardTracking.data.refresh)
 
-    const data = useAppSelector((state) => state.rewardTracking.data.TrackingList)
+    const data = useAppSelector(
+        (state) => state.rewardTracking.data.TrackingList,
+    )
 
     // useEffect(() => {
     //     const sorted = [...data].sort((a, b) => {
     //       const [dayA, monthA, yearA] = (a.dateOfParticipation ?? '00-00-0000').split('-').map(Number);
     //       const [dayB, monthB, yearB] = (b.dateOfParticipation ?? '00-00-0000').split('-').map(Number);
-    
+
     //       return yearA - yearB || monthA - monthB || dayA - dayB;
     //     });
-    
+
     //     setSortedData(sorted);
-    // }, []);    
-
-
+    // }, []);
 
     useEffect(() => {
         fetchData()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page, limit, refresh])
 
-    const tableData = useMemo(
-        () => ({ page, limit }),
-        [page, limit],
-    )
+    const tableData = useMemo(() => ({ page, limit }), [page, limit])
 
     const fetchData = () => {
         dispatch(
             getCampaignRewardtDetails({
                 page,
-                count : limit,
+                count: limit,
             }),
         )
     }
@@ -108,8 +107,8 @@ const CampaignRewardTrackingTable = () => {
                 accessorKey: 'customerId',
                 enableSorting: false,
                 cell: (props) => {
-                  const { id_user } = props.row.original;
-                  return <p>{id_user}</p>;
+                    const { id_user } = props.row.original
+                    return <p>{id_user}</p>
                 },
             },
             {
@@ -117,8 +116,8 @@ const CampaignRewardTrackingTable = () => {
                 accessorKey: 'CampaignName',
                 enableSorting: false,
                 cell: (props) => {
-                  const { store } = props.row.original;
-                  return <p>{store}</p>;
+                    const { store } = props.row.original
+                    return <p>{store}</p>
                 },
             },
             {
@@ -126,8 +125,16 @@ const CampaignRewardTrackingTable = () => {
                 accessorKey: 'dateOfParticipation',
                 enableSorting: true,
                 cell: (props) => {
-                  const { date_of_participation } = props.row.original;
-                  return <p>{date_of_participation ? new Date (date_of_participation).toLocaleDateString() : 'N/A'}</p>;
+                    const { date_of_participation } = props.row.original
+                    return (
+                        <p>
+                            {date_of_participation
+                                ? new Date(
+                                      date_of_participation,
+                                  ).toLocaleDateString()
+                                : 'N/A'}
+                        </p>
+                    )
                 },
             },
             {
@@ -135,8 +142,8 @@ const CampaignRewardTrackingTable = () => {
                 accessorKey: 'advertiserName',
                 enableSorting: false,
                 cell: (props) => {
-                  const { retailer } = props.row.original;
-                  return <p>{retailer}</p>;
+                    const { retailer } = props.row.original
+                    return <p>{retailer}</p>
                 },
             },
             {
@@ -144,8 +151,8 @@ const CampaignRewardTrackingTable = () => {
                 accessorKey: 'rewardAmount',
                 enableSorting: false,
                 cell: (props) => {
-                  const { reward_amt } = props.row.original;
-                  return <p>{reward_amt ? ` ₹ ${reward_amt}` : 'N/A'}</p>;
+                    const { reward_amt } = props.row.original
+                    return <p>{reward_amt ? ` ₹ ${reward_amt}` : 'N/A'}</p>
                 },
             },
             {
@@ -153,8 +160,8 @@ const CampaignRewardTrackingTable = () => {
                 accessorKey: 'phoneNumber',
                 enableSorting: false,
                 cell: (props) => {
-                  const { user_phone } = props.row.original;
-                  return <p>{user_phone}</p>;
+                    const { user_phone } = props.row.original
+                    return <p>{user_phone}</p>
                 },
             },
             {
@@ -162,8 +169,8 @@ const CampaignRewardTrackingTable = () => {
                 accessorKey: 'notes',
                 enableSorting: false,
                 cell: (props) => {
-                  const { notes } = props.row.original;
-                  return <p>{notes || 'No notes'}</p>;
+                    const { notes } = props.row.original
+                    return <p>{notes || 'No notes'}</p>
                 },
             },
             {
@@ -171,8 +178,8 @@ const CampaignRewardTrackingTable = () => {
                 accessorKey: 'proof',
                 enableSorting: false,
                 cell: (props) => {
-                  const { img_url } = props.row.original;
-                  return <p>{img_url ? 'Uploaded' : 'Not Provided'}</p>;
+                    const { img_url } = props.row.original
+                    return <p>{img_url ? 'Uploaded' : 'Not Provided'}</p>
                 },
             },
         ],

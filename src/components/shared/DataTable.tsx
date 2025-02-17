@@ -133,7 +133,7 @@ function _DataTable<T>(
 
     const [sorting, setSorting] = useState<ColumnSort[] | null>(null)
 
-    const [leftPositions, setLeftPositions] = useState<number[]>([]);
+    const [leftPositions, setLeftPositions] = useState<number[]>([])
 
     const pageSizeOption = useMemo(
         () =>
@@ -268,30 +268,29 @@ function _DataTable<T>(
         resetSelected,
     }))
 
-
     const calculateFixedColumnPositions = () => {
-        const positions: number[] = [];
-        let currentLeft = 0;
+        const positions: number[] = []
+        let currentLeft = 0
         fixedColumns.forEach((id) => {
-            const position = fixedColumns.indexOf(id);
+            const position = fixedColumns.indexOf(id)
             if (position >= 0) {
-                const element = document.querySelectorAll('th')[position];
+                const element = document.querySelectorAll('th')[position]
                 if (element) {
-                    const computedWidth = window.getComputedStyle(element).width;
+                    const computedWidth = window.getComputedStyle(element).width
                     if (computedWidth) {
-                        positions[position] = currentLeft;
+                        positions[position] = currentLeft
                         currentLeft += parseFloat(computedWidth)
                     }
                 }
             }
-        });
-        setLeftPositions(positions);
-    };
-    
+        })
+        setLeftPositions(positions)
+    }
+
     useEffect(() => {
-        calculateFixedColumnPositions();
-    }, [fixedColumns, data]);
-            
+        calculateFixedColumnPositions()
+    }, [fixedColumns, data])
+
     return (
         <Loading loading={loading && data.length !== 0} type="cover">
             <Table>
@@ -300,14 +299,19 @@ function _DataTable<T>(
                         <Tr key={headerGroup.id}>
                             {headerGroup.headers.map((header, index) => {
                                 const isFixed = fixedColumns.includes(header.id)
-                                const left = isFixed ? leftPositions[index] || 0 : undefined;
+                                const left = isFixed
+                                    ? leftPositions[index] || 0
+                                    : undefined
                                 return (
                                     <Th
                                         key={header.id}
                                         colSpan={header.colSpan}
                                         style={
                                             isFixed
-                                                ? { ...fixedHeaderStyle, left:left }
+                                                ? {
+                                                      ...fixedHeaderStyle,
+                                                      left: left,
+                                                  }
                                                 : {}
                                         }
                                     >
@@ -355,31 +359,36 @@ function _DataTable<T>(
                             .map((row) => {
                                 return (
                                     <Tr key={row.id}>
-                                        {row.getVisibleCells().map((cell, index) => {
-                                            const isFixed =
-                                                fixedColumns.includes(
-                                                    cell.column.id,
+                                        {row
+                                            .getVisibleCells()
+                                            .map((cell, index) => {
+                                                const isFixed =
+                                                    fixedColumns.includes(
+                                                        cell.column.id,
+                                                    )
+                                                const left = isFixed
+                                                    ? leftPositions[index] || 0
+                                                    : undefined
+                                                return (
+                                                    <Td
+                                                        key={cell.id}
+                                                        style={
+                                                            isFixed
+                                                                ? {
+                                                                      ...fixedColumnStyle,
+                                                                      left: left,
+                                                                  }
+                                                                : {}
+                                                        }
+                                                    >
+                                                        {flexRender(
+                                                            cell.column
+                                                                .columnDef.cell,
+                                                            cell.getContext(),
+                                                        )}
+                                                    </Td>
                                                 )
-                                                const left = isFixed ? leftPositions[index] || 0 : undefined;
-                                            return (
-                                                <Td
-                                                    key={cell.id}
-                                                    style={
-                                                        isFixed
-                                                            ? {
-                                                                  ...fixedColumnStyle, left:left
-                                                              }
-                                                            : {}
-                                                    }
-                                                >
-                                                    {flexRender(
-                                                        cell.column.columnDef
-                                                            .cell,
-                                                        cell.getContext(),
-                                                    )}
-                                                </Td>
-                                            )
-                                        })}
+                                            })}
                                     </Tr>
                                 )
                             })}

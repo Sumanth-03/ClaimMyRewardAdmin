@@ -94,7 +94,7 @@ const StackedSideNavMini = (props: StackedSideNavMiniProps) => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [includedRouteTree.key])
-    
+
     return (
         <div {...rest}>
             <Logo

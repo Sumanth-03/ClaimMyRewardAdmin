@@ -26,7 +26,7 @@ import {
     offset,
     flip,
     shift,
-} from '@floating-ui/react';
+} from '@floating-ui/react'
 
 dayjs.extend(localizedFormat)
 
@@ -108,9 +108,11 @@ const BasePicker = forwardRef<HTMLInputElement, BasePickerProps>(
             ) : (
                 <CloseButton className="text-base" onClick={onClear} />
             )
-        ) : (
-            inputSuffix ? <div className="cursor-pointer" onClick={handleInputClick}>{inputSuffix}</div> : null
-        )
+        ) : inputSuffix ? (
+            <div className="cursor-pointer" onClick={handleInputClick}>
+                {inputSuffix}
+            </div>
+        ) : null
 
         const toggleDropdown = (open: boolean) => {
             setDropdownOpened(open)
@@ -134,7 +136,7 @@ const BasePicker = forwardRef<HTMLInputElement, BasePickerProps>(
         }
 
         const handleInputBlur = (
-            event: FocusEvent<HTMLInputElement, Element>
+            event: FocusEvent<HTMLInputElement, Element>,
         ) => {
             onBlur?.(event)
             if (inputtable && inputtableBlurClose) {
@@ -143,7 +145,7 @@ const BasePicker = forwardRef<HTMLInputElement, BasePickerProps>(
         }
 
         const handleInputFocus = (
-            event: FocusEvent<HTMLInputElement, Element>
+            event: FocusEvent<HTMLInputElement, Element>,
         ) => {
             onFocus?.(event)
         }
@@ -154,26 +156,26 @@ const BasePicker = forwardRef<HTMLInputElement, BasePickerProps>(
             placement: 'bottom-start',
             middleware: [
                 offset(10),
-                flip({ 
-                    fallbackAxisSideDirection: 'start'
+                flip({
+                    fallbackAxisSideDirection: 'start',
                 }),
-                shift()
+                shift(),
             ],
-            whileElementsMounted: autoUpdate
-        });
+            whileElementsMounted: autoUpdate,
+        })
 
-        const focus = useFocus(context);
-        const click = useClick(context);
-        const dismiss = useDismiss(context);
-        const role = useRole(context);
+        const focus = useFocus(context)
+        const click = useClick(context)
+        const dismiss = useDismiss(context)
+        const role = useRole(context)
 
         const { getReferenceProps, getFloatingProps } = useInteractions([
             inputtable ? focus : click,
             dismiss,
-            role
-        ]);
+            role,
+        ])
 
-        const headingId = useId();
+        const headingId = useId()
 
         return (
             <>
@@ -198,23 +200,23 @@ const BasePicker = forwardRef<HTMLInputElement, BasePickerProps>(
                     onChange={onChange}
                     {...getReferenceProps({
                         onBlur: handleInputBlur,
-                        onFocus: handleInputFocus
+                        onFocus: handleInputFocus,
                     })}
                 />
                 {dropdownOpened && (
                     <div
                         className="picker"
-                        ref={refs.setFloating} 
+                        ref={refs.setFloating}
                         style={floatingStyles}
                         aria-labelledby={headingId}
                         {...getFloatingProps()}
                     >
-                         <div className="picker-panel">{children}</div>
+                        <div className="picker-panel">{children}</div>
                     </div>
                 )}
             </>
         )
-    }
+    },
 )
 
 BasePicker.displayName = 'BasePicker'

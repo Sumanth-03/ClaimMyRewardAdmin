@@ -16,8 +16,10 @@ injectReducer('rewardTracking', reducer)
 
 const CampaignRewards = () => {
     const dispatch = useAppDispatch()
-    
-    const tableData = useAppSelector((state) => state.rewardTracking.data.tableData)
+
+    const tableData = useAppSelector(
+        (state) => state.rewardTracking.data.tableData,
+    )
     const refresh = useAppSelector((state) => state.rewardTracking.data.refresh)
 
     const handleRefresh = () => {
@@ -37,7 +39,7 @@ const CampaignRewards = () => {
                         onClick={handleRefresh}
                     />
                 </div>
-                <CampaignTableTools/>
+                <CampaignTableTools />
             </div>
             <CampaignTable />
         </AdaptableCard>

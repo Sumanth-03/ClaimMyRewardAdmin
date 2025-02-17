@@ -1,5 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import reducers, { SLICE_NAME, MerchantRewardTrackingState } from './MerchantRewardSlice'
+import reducers, {
+    SLICE_NAME,
+    MerchantRewardTrackingState,
+} from './MerchantRewardSlice'
 import { useSelector } from 'react-redux'
 
 import type { TypedUseSelectorHook } from 'react-redux'
@@ -16,7 +19,6 @@ export const useAppSelector: TypedUseSelectorHook<
         }
     }
 > = useSelector
-
 
 export * from './MerchantRewardSlice'
 export { useAppDispatch } from '@/store'

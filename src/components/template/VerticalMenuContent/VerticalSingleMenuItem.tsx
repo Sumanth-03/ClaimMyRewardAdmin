@@ -59,15 +59,16 @@ const DefaultItem = (props: DefaultItemProps) => {
                             path: nav.path,
                         })
                     }
-                    target={nav.isExternalLink ? '_blank' :  ''}
+                    target={nav.isExternalLink ? '_blank' : ''}
                 >
                     <VerticalMenuIcon icon={nav.icon} />
                     {!sideCollapsed && (
-                        <span className='relative'>
+                        <span className="relative">
                             <Trans
                                 i18nKey={nav.translateKey}
                                 defaults={nav.title}
-                            /><br/>
+                            />
+                            <br />
                             {/* <span className='px-2 bg-white text-primary rounded-full text-xs aspect-square'>{nav?.unresolved} tickets are waiting for response</span> */}
                         </span>
                     )}

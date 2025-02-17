@@ -31,7 +31,7 @@ const VerticalMenuContent = (props: VerticalMenuContentProps) => {
         navMode = themeConfig.navMode,
         collapsed,
         routeKey,
-        navigationTree = [], 
+        navigationTree = [],
         userAuthority = [],
         onMenuItemClick,
         direction = themeConfig.direction,
@@ -109,7 +109,7 @@ const VerticalMenuContent = (props: VerticalMenuContentProps) => {
                                         direction={direction}
                                         onLinkClick={onMenuItemClick}
                                     />
-                                )
+                                ),
                             )}
                         </MenuGroup>
                     </AuthorityCheck>

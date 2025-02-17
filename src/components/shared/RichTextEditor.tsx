@@ -17,15 +17,15 @@ const RichTextEditor = forwardRef<RichTextEditorRef, RichTextEditorProps>(
             //     ['link', 'image'], // Link and image options
             //     ['clean'] // Remove formatting option
             // ],
-            toolbar: false
-        };
-        
+            toolbar: false,
+        }
+
         return (
             <div className="rich-text-editor">
                 <ReactQuill ref={ref} modules={modules} {...props} />
             </div>
         )
-    }
+    },
 )
 
 RichTextEditor.displayName = 'RichTextEditor'

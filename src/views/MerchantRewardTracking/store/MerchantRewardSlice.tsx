@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import {
     apiGetRewardTrackingDetails,
-    apiGetRewardTrackingDetailsKeyword
+    apiGetRewardTrackingDetailsKeyword,
 } from '@/services/MerchantRewardTrackingService'
 import type { TableQueries } from '@/@types/common'
 import type { MerchantRewardTrackingData } from '@/@types/MerchantRewardTracking'
@@ -86,35 +86,37 @@ const merchantSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-        .addCase(getMerchantRewardtDetails.fulfilled, (state, action) => {
-            state.TrackingList = action.payload.data || [];
-            state.loading = false;
-        })
-        .addCase(getMerchantRewardtDetails.pending, (state) => {
-            state.loading = true;
-        })
-        .addCase(getMerchantRewardtDetails.rejected, (state, action) => {
-            console.error("API Request Failed:", action.error.message);
-            state.loading = false;
-        })
-        .addCase(getMerchantRewardtDetailsKeyword.fulfilled, (state, action) => {
-            state.TrackingList = action.payload.data || [];
-            state.loading = false;
-        })
-        .addCase(getMerchantRewardtDetailsKeyword.pending, (state) => {
-            state.loading = true;
-        })
-        .addCase(getMerchantRewardtDetailsKeyword.rejected, (state, action) => {
-            console.error("API Request Failed:", action.error.message);
-            state.loading = false;
-        });
-
+            .addCase(getMerchantRewardtDetails.fulfilled, (state, action) => {
+                state.TrackingList = action.payload.data || []
+                state.loading = false
+            })
+            .addCase(getMerchantRewardtDetails.pending, (state) => {
+                state.loading = true
+            })
+            .addCase(getMerchantRewardtDetails.rejected, (state, action) => {
+                console.error('API Request Failed:', action.error.message)
+                state.loading = false
+            })
+            .addCase(
+                getMerchantRewardtDetailsKeyword.fulfilled,
+                (state, action) => {
+                    state.TrackingList = action.payload.data || []
+                    state.loading = false
+                },
+            )
+            .addCase(getMerchantRewardtDetailsKeyword.pending, (state) => {
+                state.loading = true
+            })
+            .addCase(
+                getMerchantRewardtDetailsKeyword.rejected,
+                (state, action) => {
+                    console.error('API Request Failed:', action.error.message)
+                    state.loading = false
+                },
+            )
     },
 })
 
-export const {
-    setTableData,
-    setRefresh
-} = merchantSlice.actions
+export const { setTableData, setRefresh } = merchantSlice.actions
 
 export default merchantSlice.reducer

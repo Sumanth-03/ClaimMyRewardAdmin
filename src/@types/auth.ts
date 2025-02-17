@@ -4,11 +4,11 @@ export type SignInCredential = {
 }
 
 export type SignInResponse = {
-    data:{
+    data: {
         token: string
     }
-    message:string
-    status:number
+    message: string
+    status: number
 }
 
 export type SignUpResponse = SignInResponse

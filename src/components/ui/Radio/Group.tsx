@@ -40,7 +40,7 @@ const Group = forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
             setValue(nextValue)
             onChange?.(nextValue, e)
         },
-        [onChange, setValue]
+        [onChange, setValue],
     )
 
     const contextValue = useMemo(
@@ -61,13 +61,13 @@ const Group = forwardRef<HTMLDivElement, RadioGroupProps>((props, ref) => {
             color,
             radioGutter,
             value,
-        ]
+        ],
     )
 
     const radioGroupClass = classNames(
         'radio-group',
         vertical && 'vertical',
-        className
+        className,
     )
 
     return (

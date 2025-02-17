@@ -1,8 +1,9 @@
 import ApiService from './ApiService'
 
-export async function apiGetRewardTrackingDetails<T, U extends Record<string, unknown>>(
-    params: U,
-) {
+export async function apiGetRewardTrackingDetails<
+    T,
+    U extends Record<string, unknown>,
+>(params: U) {
     return ApiService.fetchData<T>({
         url: '/getDashMissingPoints',
         method: 'get',
@@ -10,9 +11,10 @@ export async function apiGetRewardTrackingDetails<T, U extends Record<string, un
     })
 }
 
-export async function apiMerchantResolveTicket<T, U extends Record<string, unknown>>(
-    data: U,
-) {
+export async function apiMerchantResolveTicket<
+    T,
+    U extends Record<string, unknown>,
+>(data: U) {
     return ApiService.fetchData<T>({
         url: '/postMPTicketStatus',
         method: 'post',
@@ -20,9 +22,10 @@ export async function apiMerchantResolveTicket<T, U extends Record<string, unkno
     })
 }
 
-export async function apiGetRewardTrackingDetailsKeyword<T, U extends Record<string, unknown>>(
-    params: U,
-) {
+export async function apiGetRewardTrackingDetailsKeyword<
+    T,
+    U extends Record<string, unknown>,
+>(params: U) {
     return ApiService.fetchData<T>({
         url: '/getDashMissingPointsKeyword',
         method: 'get',

@@ -1,9 +1,6 @@
 import { useState, useRef, forwardRef } from 'react'
 import { HiOutlineFilter } from 'react-icons/hi'
-import {
-    useAppDispatch,
-    useAppSelector,
-} from '../store'
+import { useAppDispatch, useAppSelector } from '../store'
 import { FormItem, FormContainer } from '@/components/ui/Form'
 import Select from '@/components/ui/Select'
 import Button from '@/components/ui/Button'
@@ -28,10 +25,7 @@ const statusOptions: Option[] = [
     { label: 'Inactive', value: 'inactive' },
 ]
 
-const typeOptions: Option[] = [
-    { label: 'null', value: 'null' }
-]
-
+const typeOptions: Option[] = [{ label: 'null', value: 'null' }]
 
 type FormModel = {
     status?: string
@@ -56,7 +50,7 @@ const FilterForm = forwardRef<FormikProps<FormModel>, FilterFormProps>(
         const filterData = useAppSelector(
             (state) => state.rewardTracking.data.filterData,
         )
-        
+
         const tableData = useAppSelector(
             (state) => state.rewardTracking.data.tableData,
         )
@@ -85,9 +79,7 @@ const FilterForm = forwardRef<FormikProps<FormModel>, FilterFormProps>(
                         <FormContainer>
                             <FormItem
                                 label="filter"
-                                invalid={
-                                    (errors && touched) as boolean
-                                }
+                                invalid={(errors && touched) as boolean}
                                 errorMessage={''}
                             >
                                 <Field name="type">
@@ -100,8 +92,7 @@ const FilterForm = forwardRef<FormikProps<FormModel>, FilterFormProps>(
                                             options={typeOptions}
                                             value={typeOptions?.filter(
                                                 (option) =>
-                                                    option.value ===
-                                                    values,
+                                                    option.value === values,
                                             )}
                                             onChange={(option) => {
                                                 form.setFieldValue(
@@ -165,7 +156,7 @@ const CampaignFilter = () => {
     }
 
     const tableData = useAppSelector(
-        (state) => state.rewardTracking.data.tableData
+        (state) => state.rewardTracking.data.tableData,
     )
 
     const resetForm = () => {

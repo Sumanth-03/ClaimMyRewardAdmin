@@ -9,17 +9,23 @@ import {
     useAppDispatch,
     useAppSelector,
     setTableData,
-    setRefresh
+    setRefresh,
 } from './store'
 
 injectReducer('merchantRewardTracking', reducer)
 
 const MerchantRewards = () => {
     const dispatch = useAppDispatch()
-    
-    const tableData = useAppSelector((state) => state.merchantRewardTracking.data.tableData)
-    const data = useAppSelector((state) => state.merchantRewardTracking.data.TrackingList)
-    const refresh = useAppSelector((state) => state.merchantRewardTracking.data.refresh)
+
+    const tableData = useAppSelector(
+        (state) => state.merchantRewardTracking.data.tableData,
+    )
+    const data = useAppSelector(
+        (state) => state.merchantRewardTracking.data.TrackingList,
+    )
+    const refresh = useAppSelector(
+        (state) => state.merchantRewardTracking.data.refresh,
+    )
 
     const handleRefresh = () => {
         const newTableData = cloneDeep(tableData)
@@ -38,7 +44,7 @@ const MerchantRewards = () => {
                         onClick={handleRefresh}
                     />
                 </div>
-                <CampaignTableTools/>
+                <CampaignTableTools />
             </div>
             <CampaignTable />
         </AdaptableCard>

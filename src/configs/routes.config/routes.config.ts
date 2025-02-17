@@ -26,7 +26,9 @@ export const protectedRoutes = [
     {
         key: 'viewDetails',
         path: '/rewardTracking/view/:Id',
-        component: lazy(() => import('@/views/CampaignRewardTrackingDetailsPage')),
+        component: lazy(
+            () => import('@/views/CampaignRewardTrackingDetailsPage'),
+        ),
         authority: [],
         meta: {
             header: '',
@@ -35,7 +37,9 @@ export const protectedRoutes = [
     {
         key: 'viewDetailsMerchant',
         path: '/merchantRewardTracking/view/:Id',
-        component: lazy(() => import('@/views/MerchantRewardTrackingDetailsPage')),
+        component: lazy(
+            () => import('@/views/MerchantRewardTrackingDetailsPage'),
+        ),
         authority: [],
         meta: {
             header: '',
