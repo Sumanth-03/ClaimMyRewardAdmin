@@ -1,0 +1,1 @@
+import{a7 as t}from"./index-CuCeFzuJ.js";async function r(a){return t.fetchData({url:"/getDashClaimRewards",method:"get",params:a})}async function i(a){return t.fetchData({url:"/postCRTicketStatus",method:"post",data:a})}async function s(a){return t.fetchData({url:"/getDashClaimRewardsKeyword",method:"get",params:a})}export{r as a,s as b,i as c};
