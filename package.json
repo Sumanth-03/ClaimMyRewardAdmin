@@ -1,5 +1,6 @@
 {
-  "name": "cheggout_rewards_portal",
+  "name": "cheggout_claim_my_rewards_portal",
+  "homepage": "https://sumanth-03.github.io/ClaimMyRewardAdmin/",
   "private": true,
   "version": "1.4.6",
   "type": "module",
@@ -15,7 +16,8 @@
     "lint:fix": "npm run lint -- --fix",
     "prettier": "npx prettier src --check",
     "prettier:fix": "npm run prettier -- --write",
-    "format": "npm run prettier:fix && npm run lint:fix"
+    "format": "npm run prettier:fix && npm run lint:fix",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.4",
@@ -36,6 +38,7 @@
     "dayjs": "^1.11.7",
     "formik": "^2.2.9",
     "framer-motion": "^10.8.5",
+    "gh-pages": "^6.3.0",
     "history": "^5.3.0",
     "html-react-parser": "^3.0.15",
     "i18next": "^23.7.11",
